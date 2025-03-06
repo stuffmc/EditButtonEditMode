@@ -12,10 +12,8 @@ struct ContentView: View {
         if navigationStack {
             // editMode doesn't get updated
             NavigationStack {
-                Text(editMode.debugDescription)
-                    .toolbar {
-                        EditButton()
-                    }
+                // Also not when extracting it
+                EditView()
             }
         } else {
             VStack {
@@ -24,6 +22,17 @@ struct ContentView: View {
                 Spacer()
             }
         }
+    }
+}
+
+struct EditView: View {
+    @Environment(\.editMode) private var editMode
+
+    var body: some View {
+        Text(editMode.debugDescription)
+            .toolbar {
+                EditButton()
+            }
     }
 }
 
